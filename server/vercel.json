@@ -11,7 +11,7 @@
             "dest": "/server.js"
         },{
   "rewrites": [
-    { "source": "/(.*)", "destination": "api/server.js" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
 
