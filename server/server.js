@@ -822,7 +822,13 @@ app.put("/update-plan/:id", (req, res) => {
 });
 
 
+app.get('/',(req,res)=>{
+  res.send({
+    activeStatus:true,
+    error:false,
+  })
 
+})
 
 // start
 app.listen(8081, () => {
