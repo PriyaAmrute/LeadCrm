@@ -31,6 +31,24 @@ app.use(
     credentials: true,
   })
 );
+const allowedOrigins = [
+  "https://lead-crm-ybr2.vercel.app",
+  "http://localhost:5173", // or whatever your Vite local port is
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 
 
 
