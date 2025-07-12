@@ -851,6 +851,10 @@ app.put("/update-plan/:id", (req, res) => {
 
 // })
 
+app.get('/', (req, res) => {
+  res.send("✅ API is live and working!");
+});
+
 // start
 app.listen(8081, () => {
   console.log("✅ Server running on https://lead-crm-eight.vercel.app");
