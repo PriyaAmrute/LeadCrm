@@ -26,7 +26,7 @@ const upload = multer({ storage });
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://lead-crm-eight.vercel.app/",
+    origin: "https://lead-crm-eight.vercel.app",
     credentials: true,
   })
 );
