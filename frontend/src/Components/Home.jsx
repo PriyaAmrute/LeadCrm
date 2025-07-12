@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   // ✅ 1. Load session info
   useEffect(() => {
-    axios.get('http://localhost:8081/verify-session', { withCredentials: true })
+    axios.get('${import.meta.env.VITE_BACKEND_URL}/verify-session', { withCredentials: true })
       .then((res) => {
         if (res.data.Status === 'success') {
           setUsername(res.data.name);
@@ -22,7 +22,7 @@ const Dashboard = () => {
   // ✅ 2. Load users if superadmin
   useEffect(() => {
     if (role === 'superadmin') {
-      axios.get('http://localhost:8081/users', { withCredentials: true })
+      axios.get('${import.meta.env.VITE_BACKEND_URL}/users', { withCredentials: true })
         .then((res) => {
           if (res.data.Status === 'success') {
             setUsers(res.data.Users);
@@ -33,7 +33,7 @@ const Dashboard = () => {
 
   // ✅ 3. Load leads
   useEffect(() => {
-    axios.get('http://localhost:8081/api/leads', { withCredentials: true })
+    axios.get('${import.meta.env.VITE_BACKEND_URL}/api/leads', { withCredentials: true })
       .then((res) => {
         setLeads(res.data.Leads || []);
       });

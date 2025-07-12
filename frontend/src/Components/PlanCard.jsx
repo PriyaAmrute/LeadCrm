@@ -6,7 +6,7 @@ function PlanCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:8081/my-plan", { withCredentials: true })
+    axios.get("${import.meta.env.VITE_BACKEND_URL}/my-plan", { withCredentials: true })
       .then((res) => {
         if (res.data.Status === "success") {
           setPlan(res.data.Plan);

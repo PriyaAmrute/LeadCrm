@@ -46,7 +46,7 @@ const LeadManager = () => {
   const leadsPerPage = 10;
 
   const fetchLeads = async () => {
-    const res = await axios.get('http://localhost:8081/api/leads');
+    const res = await axios.get('${import.meta.env.VITE_BACKEND_URL}/api/leads');
     setLeads(res.data.Leads || []);
   };
 
@@ -57,7 +57,7 @@ const LeadManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8081/api/leads/add', form);
+      await axios.post('${import.meta.env.VITE_BACKEND_URL}/api/leads/add', form);
       setShowAddModal(false);
       setForm({
         name: '',
@@ -88,7 +88,7 @@ const LeadManager = () => {
       confirmButtonText: 'Yes, delete it!',
     });
     if (confirm.isConfirmed) {
-      await axios.delete(`http://localhost:8081/api/leads/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/leads/${id}`);
       fetchLeads();
       Swal.fire('Deleted!', 'Lead has been deleted.', 'success');
     }
@@ -147,7 +147,7 @@ const handleExportExcel = () => {
 
   const handleUpdateLead = async () => {
     const { id, name, email, phone, source, status, leadDate, remarks, followUpDate } = editLead;
-    await axios.put(`http://localhost:8081/api/leads/${id}`, {
+    await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/leads/${id}`, {
       name,
       email,
       phone,

@@ -19,7 +19,7 @@ function LicensePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/verify-session", { withCredentials: true })
+      .get("${import.meta.env.VITE_BACKEND_URL}/verify-session", { withCredentials: true })
       .then((res) => {
         if (res.data.Status === "success" && res.data.role === "superadmin") {
           fetchLicenses();
@@ -33,7 +33,7 @@ function LicensePage() {
 
   const fetchLicenses = () => {
     axios
-      .get("http://localhost:8081/get-all-licenses", { withCredentials: true })
+      .get("${import.meta.env.VITE_BACKEND_URL}/get-all-licenses", { withCredentials: true })
       .then((res) => {
         if (res.data.Status === "success") {
           setLicenses(res.data.Licenses);
@@ -50,7 +50,7 @@ function LicensePage() {
 
   const fetchUsers = () => {
     axios
-      .get("http://localhost:8081/users", { withCredentials: true })
+      .get("${import.meta.env.VITE_BACKEND_URL}/users", { withCredentials: true })
       .then((res) => {
         if (res.data.Status === "success") {
           setUsers(res.data.Users);
@@ -69,8 +69,8 @@ function LicensePage() {
 
     try {
       const url = editingId
-        ? `http://localhost:8081/update-license/${editingId}`
-        : "http://localhost:8081/add-license";
+        ? `${import.meta.env.VITE_BACKEND_URL}/update-license/${editingId}`
+        : "${import.meta.env.VITE_BACKEND_URL}/add-license";
       const method = editingId ? axios.put : axios.post;
 
       const res = await method(url, data, { withCredentials: true });
@@ -107,7 +107,7 @@ function LicensePage() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:8081/delete-license/${id}`, { withCredentials: true })
+          .delete(`${import.meta.env.VITE_BACKEND_URL}/delete-license/${id}`, { withCredentials: true })
           .then((res) => {
             if (res.data.Status === "success") {
               Swal.fire("Deleted", "License removed", "success");
@@ -132,7 +132,7 @@ function LicensePage() {
       if (result.isConfirmed) {
         axios
           .put(
-            `http://localhost:8081/approve-license/${id}`,
+            `${import.meta.env.VITE_BACKEND_URL}/approve-license/${id}`,
             { status },
             { withCredentials: true }
           )

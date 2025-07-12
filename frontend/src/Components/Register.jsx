@@ -13,7 +13,7 @@ const Register = () => {
   const navigate=useNavigate();
  const handleSubmit=(event)=>{
   event.preventDefault();
-  axios.post('http://localhost:8081/register', values)
+  axios.post('${import.meta.env.VITE_BACKEND_URL}/register', values)
   .then(res=>{
     if(res.data.Status === "success"){
       navigate('/login');

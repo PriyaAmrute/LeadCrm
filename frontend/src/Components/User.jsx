@@ -25,7 +25,7 @@ const [search, setSearch] = useState({
 });
 
   const fetchUsers = () => {
-    axios.get("http://localhost:8081/users", { withCredentials: true })
+    axios.get("${import.meta.env.VITE_BACKEND_URL}/users", { withCredentials: true })
       .then(res => {
         if (res.data.Status === 'success') {
           setUsers(res.data.Users);
@@ -58,7 +58,7 @@ const [search, setSearch] = useState({
     form.append("password", newUser.password);
     form.append("profile", newUser.profile);
 
-    axios.post("http://localhost:8081/register", form, {
+    axios.post("${import.meta.env.VITE_BACKEND_URL}/register", form, {
       withCredentials: true,
       headers: { "Content-Type": "multipart/form-data" }
     }).then(res => {
@@ -79,7 +79,7 @@ const [search, setSearch] = useState({
     if (formData.password) form.append("password", formData.password);
     if (formData.profile) form.append("profile", formData.profile);
 
-    axios.put(`http://localhost:8081/users/${editingUser}`, form, {
+    axios.put(`${import.meta.env.VITE_BACKEND_URL}/users/${editingUser}`, form, {
       withCredentials: true,
       headers: { "Content-Type": "multipart/form-data" }
     }).then(res => {
@@ -101,7 +101,7 @@ const [search, setSearch] = useState({
       showCancelButton: true
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:8081/users/${id}`, { withCredentials: true })
+        axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, { withCredentials: true })
           .then(res => {
             if (res.data.Status === 'success') {
               Swal.fire("Deleted", "User deleted", "success");
@@ -256,7 +256,7 @@ const [search, setSearch] = useState({
             <td>
               {user.profile
                 ? <img
-                    src={`http://localhost:8081/uploads/${user.profile}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${user.profile}`}
                     alt="profile"
                     width="40"
                     height="40"

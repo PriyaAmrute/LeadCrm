@@ -22,7 +22,7 @@ const DashboardLayout = () => {
 
   // 🧠 Fetch session
   useEffect(() => {
-    axios.get("http://localhost:8081/verify-session")
+    axios.get("${import.meta.env.VITE_BACKEND_URL}/verify-session")
       .then((res) => {
         if (res.data.Status === "success") {
           setAuth(true);
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
   // 🧠 Fetch notifications periodically
   useEffect(() => {
     const fetchNotifications = () => {
-      axios.get("http://localhost:8081/api/notifications")
+      axios.get("${import.meta.env.VITE_BACKEND_URL}/api/notifications")
         .then(res => {
           if (res.data.Status === 'success') {
             const notifs = res.data.Notifications.map(n => ({
@@ -84,7 +84,7 @@ const DashboardLayout = () => {
   };
 
   const handleLogout = () => {
-    axios.get('http://localhost:8081/logout')
+    axios.get('${import.meta.env.VITE_BACKEND_URL}/logout')
       .then(res => {
         if (res.data.Status === "success") {
           setAuth(false);
@@ -160,7 +160,7 @@ const DashboardLayout = () => {
               >
                 {user.profile ? (
                   <img
-                    src={`http://localhost:8081/uploads/${user.profile}`}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${user.profile}`}
                     alt="Profile"
                     className="rounded-circle"
                     style={{ width: '40px', height: '40px', objectFit: 'cover', cursor: 'pointer' }}

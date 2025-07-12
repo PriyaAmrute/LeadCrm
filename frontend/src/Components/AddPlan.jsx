@@ -10,7 +10,7 @@ const ManagePlans = () => {
 
   const fetchPlans = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/get-plans", {
+      const res = await axios.get("${import.meta.env.VITE_BACKEND_URL}/get-plans", {
         withCredentials: true,
       });
       if (res.data.Status === "success") {
@@ -56,7 +56,7 @@ const ManagePlans = () => {
       };
 
       const res = await axios.put(
-        `http://localhost:8081/update-plan/${selectedPlan.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/update-plan/${selectedPlan.id}`,
         payload,
         { withCredentials: true }
       );

@@ -8,14 +8,14 @@ const Plans = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8081/get-plans", { withCredentials: true })
+    axios.get("${import.meta.env.VITE_BACKEND_URL}/get-plans", { withCredentials: true })
       .then(res => {
         if (res.data.Status === "success") {
           setPlans(res.data.Plans);
         }
       });
 
-    axios.get("http://localhost:8081/verify-session", { withCredentials: true })
+    axios.get("${import.meta.env.VITE_BACKEND_URL}/verify-session", { withCredentials: true })
       .then(res => {
         if (res.data.Status === "success") {
           setEmail(res.data.email);
@@ -27,7 +27,7 @@ const Plans = () => {
     if (!selectedPlan) return alert("Please select a plan");
 
     try {
-      const res = await axios.post("http://localhost:8081/create-order", {
+      const res = await axios.post("${import.meta.env.VITE_BACKEND_URL}/create-order", {
         amount: selectedPlan.price,
         plan_id: selectedPlan.id
       }, { withCredentials: true });
@@ -46,7 +46,7 @@ const Plans = () => {
         description: selectedPlan.name,
         order_id: order.id,
         handler: async function (response) {
-          const confirmRes = await axios.post("http://localhost:8081/confirm-payment", {
+          const confirmRes = await axios.post("${import.meta.env.VITE_BACKEND_URL}/confirm-payment", {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
