@@ -34,11 +34,18 @@ app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
 
 // mysql
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "leadcrm",
+// });
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "leadcrm",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 // middleware
@@ -832,5 +839,5 @@ app.put("/update-plan/:id", (req, res) => {
 
 // start
 app.listen(8081, () => {
-  console.log("✅ Server running on http://localhost:8081");
+  console.log("✅ Server running on https://lead-crm-eight.vercel.app");
 });  
