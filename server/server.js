@@ -48,6 +48,14 @@ const db = mysql.createConnection({
   port: process.env.DB_PORT
 });
 
+db.connect((err) => {
+  if (err) {
+    console.error("❌ MySQL connection failed:", err.message);
+  } else {
+    console.log("✅ Connected to Railway MySQL");
+  }
+});
+
 // middleware
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
