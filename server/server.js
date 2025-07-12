@@ -26,7 +26,7 @@ const upload = multer({ storage });
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://lead-crm-eight.vercel.app/",
     credentials: true,
   })
 );
@@ -822,13 +822,13 @@ app.put("/update-plan/:id", (req, res) => {
 });
 
 
-app.get('/',(req,res)=>{
-  res.send({
-    activeStatus:true,
-    error:false,
-  })
+// app.get('/',(req,res)=>{
+//   res.send({
+//     activeStatus:true,
+//     error:false,
+//   })
 
-})
+// })
 
 // start
 app.listen(8081, () => {
