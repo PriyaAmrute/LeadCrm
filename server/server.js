@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import mysql from "mysql";
+import mysql from "mysql2"; // ✅ new
+
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
