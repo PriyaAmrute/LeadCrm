@@ -26,10 +26,11 @@ const upload = multer({ storage });
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://lead-crm-eight.vercel.app",
+    origin: "https://lead-crm-ybr2.vercel.app", // ✅ This is your frontend domain
     credentials: true,
   })
 );
+
 
 
 
