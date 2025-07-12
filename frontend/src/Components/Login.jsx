@@ -18,7 +18,7 @@ function AuthPage() {
     }
 
     try {
-      const res = await axios.post('${import.meta.env.VITE_BACKEND_URL}/login', loginData, { withCredentials: true });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, loginData, { withCredentials: true });
 
       if (res.data.Status === 'success') {
         localStorage.setItem('user', JSON.stringify({
@@ -87,7 +87,7 @@ function AuthPage() {
       const { name, email, picture } = decoded;
 
       const res = await axios.post(
-        '${import.meta.env.VITE_BACKEND_URL}/google-login',
+        `${import.meta.env.VITE_BACKEND_URL}/google-login`,
         { name, email, profile: picture },
         { withCredentials: true }
       );
@@ -109,7 +109,7 @@ function AuthPage() {
           role: res.data.role
         }));
 
-        const sessionRes = await axios.get('${import.meta.env.VITE_BACKEND_URL}/verify-session', { withCredentials: true });
+        const sessionRes = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/verify-session`, { withCredentials: true });
 
         if (sessionRes.data.Status === 'success') {
           Swal.fire({
