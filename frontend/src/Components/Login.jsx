@@ -60,7 +60,7 @@ function AuthPage() {
       formData.append('password', password);
       if (profile) formData.append('profile', profile);
 
-      const res = await axios.post('${import.meta.env.VITE_BACKEND_URL}/register', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/register`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true
       });
