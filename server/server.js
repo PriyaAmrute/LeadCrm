@@ -27,7 +27,10 @@ const upload = multer({ storage });
 app.use(express.json());
 
 app.use(cors({
-  origin: ['https://lead-crm-ybr2.vercel.app'], // ✅ Frontend URL
+  origin: [
+    'https://lead-crm-ybr2.vercel.app',
+    'https://lead-crm-ybr2-git-main-priyas-projects-a9085293.vercel.app'
+  ],
   credentials: true
 }));
 const allowedOrigins = [
