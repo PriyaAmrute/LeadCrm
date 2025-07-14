@@ -25,12 +25,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://lead-crm-ybr2.vercel.app", // ✅ This is your frontend domain
-    credentials: true,
-  })
-);
+
+app.use(cors({
+  origin: ['https://lead-crm-ybr2.vercel.app'], // ✅ Frontend URL
+  credentials: true
+}));
 const allowedOrigins = [
   "https://lead-crm-ybr2.vercel.app",
   "http://localhost:5173", // or whatever your Vite local port is
