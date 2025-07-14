@@ -26,30 +26,25 @@ const upload = multer({ storage });
 
 app.use(express.json());
 
-app.use(cors({
-  origin: [
-    'https://lead-crm-ybr2.vercel.app',
-    'https://lead-crm-ybr2-git-main-priyas-projects-a9085293.vercel.app'
-  ],
-  credentials: true
-}));
 const allowedOrigins = [
-  "https://lead-crm-ybr2.vercel.app",
-  "http://localhost:5173", // or whatever your Vite local port is
+  'https://lead-crm-ybr2.vercel.app',
+  'https://lead-crm-ybr2-git-main-priyas-projects-a9085293.vercel.app'
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
+
+
+
 
 
 
@@ -877,6 +872,6 @@ app.get('/', (req, res) => {
 });
 
 // start
-app.listen(8081, () => {
-  console.log("✅ Server running on https://lead-crm-eight.vercel.app");
-});  
+// app.listen(8081, () => {
+//   console.log("✅ Server running on https://lead-crm-eight.vercel.app");
+// });  
